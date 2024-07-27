@@ -21,15 +21,15 @@ def clear_scene():
         ob.select_set(True)
         bpy.ops.object.delete()
 
-        
 def save_obj(obj, filename):
     viewlayer = bpy.context.view_layer
     viewlayer.objects.active = obj
     obj.select_set(True)
     stl_path = OUTPUT_PATH / f"{filename}.stl"
-    bpy.ops.export_mesh.stl(
-            filepath=str(stl_path),
-            use_selection=True)
+    bpy.ops.wm.stl_export(
+        filepath=str(stl_path),
+        export_selected_objects=True
+    )
     obj.select_set(False)
 
 
